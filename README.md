@@ -16,6 +16,7 @@ Project Description
 
 
 How to play
+
     Github Clone Route:
         - Please do feel free to clone this repository and after pip installing all aspects listed down below to play the game and some fun, good luck beating Shigiraki.
             - pip install pygame
@@ -23,6 +24,9 @@ How to play
             - pip install opencv-python
             - pip install mediapipe
             - pip install moviepy
+            
+       - **Most importantly please put this downloaded video clip, [Sports Festival Clip]([url](https://drive.google.com/uc?export=download&id=15qQZQzsBDhgLjMPWwbMjZ1tNuoOyslN5)), in this file, The_UA_Visual_Sports_Festival\menu\items\.
+       It was way to large for me to push onto this repo.**
 
 
 
