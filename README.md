@@ -25,8 +25,8 @@ How to play
             - pip install mediapipe
             - pip install moviepy
             
-       - **Most importantly please put this downloaded video clip, [Sports Festival Clip]([url](https://drive.google.com/uc?export=download&id=15qQZQzsBDhgLjMPWwbMjZ1tNuoOyslN5)), in this file, The_UA_Visual_Sports_Festival\menu\items\.
-       It was way to large for me to push onto this repo.**
+  - **Most importantly please put this downloaded video clip, [Sports Festival Clip](https://drive.google.com/uc?export=download&id=15qQZQzsBDhgLjMPWwbMjZ1tNuoOyslN5), in this file, The_UA_Visual_Sports_Festival\menu\items\. It was way too large for me to push onto this repo.**
+
 
 
 
