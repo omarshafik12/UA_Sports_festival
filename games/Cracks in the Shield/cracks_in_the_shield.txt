@@ -1,0 +1,41 @@
+Overview:
+    - This is a simple game similar to whack a mole in certain aspects.
+    - A player has to hit the weak points within a certain time or else they lose
+
+How to play:
+    - For each version of Kirishima you have to hit the points within a certain time frame. 
+    - For version 1, time = 7 seconds, version 2, time = 4 seconds, version 3, time = 2 seconds(good luck with this one).
+    - I didn't have enough time to fix the hand so it could or could not get the point if it is on top of it.
+        - as long as your index finger hits it, it will count and be removed
+
+                                                        Coding & Logic
+Kirishima.py:
+    - This file initializes all the needed content of the game at the beginning.
+    - For each level there is an increase in the amount of points that need to be hit and a decrease in the time alloted between each hit
+    - if new is true it tells the program to run the code meant to make points and resets the timer back. 
+    - else it checks if a collision has happened, if not then it goes to the losing level. 
+
+Cracks_in_the_shield_mechanics.py:
+    - Cracks_in_the_shield():
+        - __init__():
+            - Mainly sets up the positioning of player and needed variables for movement.
+            
+        - rotate_player_movement():
+            - using the previous coordinates and new coordinates it measures the difference of distance and determines if the player has moved enough for the rotation to need to be changed.
+                - The reason is because if you don't move your finger, even the slightest of slightest movement would make the arm rotate which didn't look correct.
+            - Upon that determination it would calculate the angle and adjust the arm to be in that direction.
+            - After all those steps it then removes the previous x and y to prep for the next check
+
+        - move_draw():
+            - The previous function determines the direction & rotation, this function sets the arms postion to match the player's index finger.
+        
+        - weak_point_generation():
+            - This function keeps on randomly generating a number within the width & height of the Kirishima image.
+            - The reason we find the alpha value rather that just use mask.get_at(), is because it would blit the weak point on a spot in the width & height but not on Kirishima.
+                - Confirming the alpha value lets us know it is truly on Kirishima
+        
+        - collision():
+            - Simply checks if the player has collided with the point
+
+Resources:
+    - https://stackoverflow.com/questions/58603835/how-to-rotate-an-imageplayer-to-the-mouse-direction

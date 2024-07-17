@@ -1,0 +1,29 @@
+Overview:
+    - In this game Momo randomly drops items that Midoriya has to evade.
+
+How to play:
+    - You must avoid all items that Momo drops until the timer reaches zero
+    - Every 30 seconds the interval between when Momo drops them shortens by a second
+
+                                                        Coding & Logic
+Momo.py:
+    - initializes and runs drop_off_mechanics functions
+
+drop_off_mechanics.py:
+    - generate_items():
+        - generate_items():
+            - it rescales items to fit within 200 x 200 and then appends them as a possible choice in the list
+
+        - creation_animation():
+            - creates an animation for each time Momo "creates" an object.
+        
+        - Remaining functions have been discussed in Decay_Invaders.txt
+        
+        - difficulty_increase():
+            - for every 30 seconds it lowers the second timer(is always 30 seconds lower as it is used by conditional) by 30 seconds and lowers the drop timer by 1 
+                - at the last 30 seconds Momo should drop a item every second
+            - Lastly if the timer is zero then the player wins the game. 
+
+Resources:
+    - https://stackoverflow.com/questions/30720665/countdown-timer-in-pygame
+        

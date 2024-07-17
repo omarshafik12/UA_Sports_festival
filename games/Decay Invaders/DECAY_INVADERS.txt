@@ -1,0 +1,95 @@
+Overview:
+    - This is a simple game similar to space invaders in certain aspects. The deciding factor is Midoriya's Powers ups.
+    - In terms of just bullet to bullet combat
+
+How to play:
+    - Move your index to control midoriya who shoots a bullet every 2 seconds compared to shigirakis every 4.
+    - Shigiraki's bullets have 150 health/damage(depending on scenario) while Midoriya has 50. So the key deciding factor for you to win is your power ups
+    
+    Power ups:
+    - Blackwhip: eliminates all bullets from the map, 1 use only.
+    - Fa Jin: shoots a powerful bullet after 5 seconds of charging that has 450 health/damage,if hit at all it will disappear, if it dodges all bullets, significant damage will be dealt, 1 use only.
+    - Float: bullets fly "over" each other for about 10 seconds, 1 use only.
+    - Gearshift: Midoriya's bullets double their speed, 3 uses.
+    - Smokescreen: Randomly places a smokescreen that if hit flips the bullets direction for both players, 4 uses.
+
+                                                        Coding & Logic
+Shigiraki.py:
+    - As you can this file essentially initializes key objects and runs most of the logic already defined within decay_invaders_mechanics.py
+    - setup is webcam aspect that is built with OpenCV and Mediapipe.
+
+Decay_invaders_mechanics.py:
+    - Bullets():
+        - __init__():
+            - This class initializes each bullet that is added to the respective bullet group
+            - The parameters set the rules for position, direction and sets the information for damage and identifier as they are variable
+        
+        - check_collisions():
+            - every single element that is a bullet or smokescreen is inputted through their respective list
+            - groupcollide(group1, group2, dokill1, dokill2, collided = None) -> Sprite_dict, this function checks all collisions and doesn't remove items as that is left for a different function
+            - The identifiers of collided bullets are placed within their respective list that is returned for the removing function to identify and remove
+    
+    - Decay_Invaders():
+        - __init__():
+            - The initalization for the health bars initalizaties bar length, amount, and speed(for animation) while providing ratios neccessary to dictate health as events occur
+            - The bullet related initalization sets up the bullet groups and collision lists. The remaining variables are basic inputs that are needed for each bullet in the bullet class
+            - The power ups initalization sets up the images and their maxes uses while having various variables in place that are needed to execute each power's functionality
+            
+        - get_damage():
+            - If a bullet goes behind a player then this function is called with that player's string identifier("mid" or "shigi") and takes away the amount of bullet damage left
+            - Furthermore, if either one goes to zero or less then the game concludes and is returned back to the play page of the main menu
+
+        - advanced_health() & advanced_health_mid():
+            - The function uses the result of target_health / health_ratio to find the target_health and checks if current health should be lowered or remain the same
+            - if health needs to be lowered then the first bar(red)/current_health is immediately moved to target_health while a transition bar is placed to show the distance and slowly lowered
+                - this is to add a cool effect and animation to the game's experience
+            - Lastly with the use of drawing functionality, the 3 rectangles(health bar, transition bar, border rectangle) are drawn onto the screen.
+        
+        - get_image():
+            - Using the running spritesheets for both characters it goes through frames(sections of the spritesheet) while constantly changing position of the character to give off a running animation
+            - Secondly, using the flip boolean determined by another functions conditions it is able to be bidirectional and go right or left.
+        
+        - shigi_move():
+            - It initially takes the x given by shigi_choice(), and follows a bunch of conditions that determine Shigi's movement.
+            - The first set of conditionals set the range of shigi's movement so that he stays within bounds.
+            - Then depending on current position and the new inputted x position, Shigiraki stays put, or moves left or right. 
+        
+        - player_move():
+            - similar to shigi_move except that the input is from the index finger of the player, setup.x and is recalculated to fit the rest of the function's requirements.
+        
+        - shigi_choice():
+            - Due to not having enough time to implement an AI, Shigiraki is rather controlled by the first bullet in the mid_bullets group.
+            - For time == 1 or time == 2 conditionals, those are set in place so the running animation is more smoothed out as if they weren't in place, Shigiraki would just instantly teleport there.
+        
+        - sprite_animations():
+            - This functions runs through the spritesheet to create an explosion animation that takes 5 seconds to complete.
+        
+        - shoot_projectile_mid():
+            - Mid aspect:
+                - Every 0 seconds, Midoriya inputs a bullet into the group with the same information unless a if statement for Fa_Jin inputs a different damage and image
+
+                - In the second half, it deals with collision, if midoriya collides with the smoke then it flips the direction of the bullet, if the bullet goes past 175 it damages shigi and vice versa for going past 1175
+                - if the float counter is 0 then every bullet that collided with shigi then is removed, else nothing is removed until float counter is 0
+            
+            - Shigi aspect:
+                - similar to mid aspect just without the float and Fa_Jin functionality
+        
+        - blackwhip():
+            - removes all bullets
+        
+        - smokescreen():
+            - randomly generates a x and y to place a new smokescreen which is then added to the Bullets class
+
+        - mid_power_ups():
+            - The images are changed to the black and white once they have been used.
+
+            - For Float, it just starts the timer and the mid aspect in shoot_projectile_mid deals with the logic of not removing after collision
+            - For Gearshit, it adjusts the speed variable that is used to subtract or add to for the Y axis to double and sets the timer.
+            - For smokescreen, it sets the counter and makes the variable that will tell the rest of the code to make a new smokescreen
+
+Resources:
+    - These resources aided me in solving certain problems:
+        - https://www.youtube.com/watch?v=d06aVDzOfV8&list=PLjcN1EyupaQmZw8C-q6a4Zekidxf8SUj3&ab_channel=CodingWithRuss
+        - https://www.geeksforgeeks.org/pathlib-module-in-python/ 
+        - https://www.youtube.com/watch?v=pUEZbUAMZYA&ab_channel=ClearCode
+        - there have been a few more that I lost track of.

@@ -1,0 +1,39 @@
+Overview:
+    - This is meant to resemble the cookie game from squid game
+    - The player has to cover most of the cookie's frame to move on to the next image
+
+How to play:
+    - Once you touch cookie the game starts
+    - You can only move to the next cookie when there is a 10 to 1 ratio of midoriya drawing to black of the cookie
+    - You have 3 seconds between each cookie switch to get back on the black line. 
+
+                                                        Coding & Logic
+Shota.py:
+    - The function load new item, allows for the transition to new content to change levels in the game
+    - The "waiting" mechanicisms allow for the user to set and be on the cookie before the check collision starts checking again
+    - The for loop draws the lines and circles in the game_mechanics.lines list.
+    - The rest of the code mainly runs the Ice_cutter_mechanics functions.
+
+Ice_cutter_mechanics.py:    
+    - Squid_game_mechanics():
+        - __init__():
+            - Initializes player aspects and key variables
+            
+        - Move_draw():
+            - This function recalculates the inputs of the new x and y coordinates and aligns the object before blitting it onto the screen
+
+        - Check_Collision():
+            - The function uses pixel perfect collision with masks to decide between two booleans
+            - Futhermore if True then it adds coordinates to a temporary list 
+                - Once there is 2 sets of coordinates in that list so that the for loop in Shota is able to draw a line which needs to coordinates
+        
+        - grab_screen():
+            - This function copies a subsection of the screen that contains mainly the cookie. Then it goes through every pixel and gets the colors count(black or Midoriya's light blue)
+                - With this information it calculates the ratio and if the ratio is 10 to 1, Mid blue to cookie black, then the player can move on to the next level. 
+        
+Resources:
+    - These resources aided me in solving certain problems:
+        - https://stackoverflow.com/questions/17267395/how-to-take-screenshot-of-certain-part-of-screen-in-pygame
+        - https://www.pygame.org/docs/ref/surface.html#pygame.Surface.get_at
+        - https://www.youtube.com/watch?v=WfqXcyF0_b0&ab_channel=TechWithTim
+        - https://stackoverflow.com/questions/66491982/line-drawing-in-pygame
