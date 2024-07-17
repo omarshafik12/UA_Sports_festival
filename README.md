@@ -1,4 +1,4 @@
-                                                    Project Title: U.A. Sports Festival
+**Project Title: U.A. Sports Festival**
 
 Project Overview
 
